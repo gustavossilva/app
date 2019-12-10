@@ -22,13 +22,15 @@ const mutations = {
     state.collection = null;
     state.primaryKey = null;
     state.values = {};
+    state.savedItem = {};
   },
 
-  [ITEM_CREATED](state) {
+  [ITEM_CREATED](state, { data }) {
     state.saving = false;
     state.error = null;
     state.collection = null;
     state.primaryKey = null;
+    state.savedItem = data;
 
     // Don't clear savedValues / edits here
     // Clearing them will cause a flash of no-values on the edit form between the
@@ -40,6 +42,7 @@ const mutations = {
     state.primaryKey = primaryKey;
     state.savedValues = savedValues;
     state.values = {};
+    state.savedItem = {};
   },
 
   [UNSTAGE_VALUE](state, { field }) {
